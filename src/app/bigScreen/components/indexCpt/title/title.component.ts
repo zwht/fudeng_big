@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./title.component.less']
 })
 export class TitleComponent implements OnInit {
-
+  titleCpt={
+    width: 1920,
+    height: 90,
+    left: 0,
+    top: 0,
+  }
   constructor() { }
 
   ngOnInit() {

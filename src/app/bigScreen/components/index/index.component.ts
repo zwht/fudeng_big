@@ -7,12 +7,13 @@ import { ScaleService } from '../../service/scale.service';
   styleUrls: ['./index.component.less']
 })
 export class IndexComponent implements OnInit {
-  cpTitle = {
-    width: 1300,
-    height: 45,
-    left: 31 + 196,
-    top: 59 + 65,
+  bgBox = {
+    width: 1920,
+    height: 1080,
+    left: 0,
+    top: 0,
   };
+
   constructor(
     private s:ScaleService
   ) { }
