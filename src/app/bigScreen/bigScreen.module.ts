@@ -34,24 +34,27 @@ export const routes: Routes = [
         component: ProvinceComponent,
         children: [
             {
-                path: 'chengDu',
+                path: 'siChuan',
                 component: SiChuanComponent,
                 data: {
-                    name: '四川'
+                    name: '四川',
+                    state:'siChuan'
                 }
             },
             {
                 path: 'chongQing',
-                component: ChongQingComponent,
+                component: SiChuanComponent,
                 data: {
-                    name: '重庆'
+                    name: '重庆',
+                    state:'chongQing'
                 }
             },
             {
                 path: 'huBei',
-                component: HuBeiComponent,
+                component: SiChuanComponent,
                 data: {
-                    name: '湖北'
+                    name: '湖北',
+                    state:'huBei'
                 }
             }
         ]

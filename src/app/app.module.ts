@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
 import { ShareModule } from './share/share.module';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +20,6 @@ registerLocaleData(zh);
         NoopAnimationsModule,
         BrowserAnimationsModule,
         HttpModule,
-
         ShareModule,
         RouterModule.forRoot([
             // {

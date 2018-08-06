@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ScaleService } from '../../service/scale.service';
+import { UserService } from '../../../share/restServices/UserService';
 
 @Component({
   selector: 'app-index',
@@ -15,12 +16,10 @@ export class IndexComponent implements OnInit {
   };
 
   constructor(
-    private s:ScaleService
+    private s: UserService
   ) { }
 
   ngOnInit() {
-    window
-    debugger
-  }
 
+  }
 }

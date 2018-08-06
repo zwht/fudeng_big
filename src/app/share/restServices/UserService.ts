@@ -1,10 +1,11 @@
 /**
  * Created by zhaowei on 2017/10/16.
  */
-import {Injectable} from '@angular/core';
-import {HttpServer} from '../services/HttpServer';
-
-@Injectable()
+import { Injectable } from '@angular/core';
+import { HttpServer } from '../services/HttpServer';
+@Injectable({
+    providedIn: 'root'
+})
 export class UserService {
 
     url = '/v1/user/:params1/:params2/:params3/:params4/:params5';
@@ -44,7 +45,7 @@ export class UserService {
             params: {
                 params1: 'getById'
             }
-        },        
+        },
         updateState: {
             method: 'get',
             params: {

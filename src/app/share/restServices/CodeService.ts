@@ -4,7 +4,9 @@
 import {Injectable} from '@angular/core';
 import {HttpServer} from '../services/HttpServer';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class CodeService {
 
     url = '/v1/code/:params1/:params2/:params3/:params4/:params5';

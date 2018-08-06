@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class SessionService {
     private timeRegx = /(([0-9]+)(s|m|h|d|w))/g;
     private getTime(v, type) {
