@@ -28,26 +28,20 @@ export class Chart1Component implements OnInit {
       },
       tooltip: {
         trigger: 'axis',
-        axisPointer: {
-          lineStyle: {
-            color: "#124FFF"
-          }
-        },
-        backgroundColor: '#05204F',
-        borderColor: '#003E9A',
-        borderWidth: 1,
-        textStyle: {
-          color: '#9CC4FF',
-          fontSize: 12,
-        },
+        backgroundColor: 'rgba(50,50,50,0)',
         formatter: function (params, ticket, callback) {
-            debugger
-          return '<div  style="color: red">Loading</div>';
-      },
+          let shuju = ''
+          for (let index = 0; index < params.length; index++) {
+            let data1
+            data1 = '<div><span>'+params[index].seriesName+' : '+params[index].value+'</span></div>'
+            shuju = shuju + data1
+          }
+          return '<div class="waikuang"><div class="zuoshang"><div class="zuoshang1"></div><div class="zuoshang2"></div></div><div class="youshang"><div class="youshang1"></div><div class="youshang2"></div></div><div class="neikuang" ><div><span>'+params[0].name+'</span></div>'+shuju+'</div><div><div class="zuoxia1"></div><div class="zuoxia2"></div></div><div class="youxia"><div class="youxia1"></div><div class="youxia2"></div></div></div>';
+        },
         padding: 10
       },
       legend: {
-        top: 'middle',
+        top: '20%',
         right: 'right',
         orient: 'vertical',
         inactiveColor: 'gray',
@@ -60,14 +54,14 @@ export class Chart1Component implements OnInit {
       },
       grid: {
         left: '3%',
-        right: '20%',
-        bottom: '3%',
+        right: '15%',
+        bottom: '20%',
         containLabel: true,
       },
       xAxis: {
         axisLine: {
           lineStyle: {
-            color: '#1F3C7A',
+            color: '#557DD4',
           }
         },
         type: 'category',
@@ -75,11 +69,11 @@ export class Chart1Component implements OnInit {
         data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
       },
       yAxis: {
-        name :'(万元)',
-        nameLocation : 'end',
+        name: '(万元)',
+        nameLocation: 'end',
         axisLine: {
           lineStyle: {
-            color: '#1F3C7A',
+            color: '#557DD4',
           }
         },
         splitLine: {
@@ -89,47 +83,50 @@ export class Chart1Component implements OnInit {
         },
         type: 'value'
       },
-
+      dataZoom: [{
+        start: 0,
+        end: 10
+      }],
       series: [
         {
           name: '邮件营销',
           type: 'line',
           stack: '总量',
           data: [120, 132, 101, 134, 90, 230, 210],
-          symbol:'none',
-          smooth:true,
+          symbol: 'none',
+          smooth: true,
         },
         {
           name: '联盟广告',
           type: 'line',
           stack: '总量',
           data: [220, 182, 191, 234, 290, 330, 310],
-          symbol:'none',
-          smooth:true,
+          symbol: 'none',
+          smooth: true,
         },
         {
           name: '视频广告',
           type: 'line',
           stack: '总量',
           data: [150, 232, 201, 154, 190, 330, 410],
-          symbol:'none',
-          smooth:true,
+          symbol: 'none',
+          smooth: true,
         },
         {
           name: '直接访问',
           type: 'line',
           stack: '总量',
           data: [320, 332, 301, 334, 390, 330, 320],
-          symbol:'none',
-          smooth:true,
+          symbol: 'none',
+          smooth: true,
         },
         {
           name: '搜索引擎',
           type: 'line',
           stack: '总量',
           data: [820, 932, 901, 934, 1290, 1330, 1320],
-          symbol:'none',
-          smooth:true,
+          symbol: 'none',
+          smooth: true,
         }
       ]
     }
