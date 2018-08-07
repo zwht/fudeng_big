@@ -33,7 +33,7 @@ export class Chart1Component implements OnInit {
           let shuju = ''
           for (let index = 0; index < params.length; index++) {
             let data1
-            data1 = '<div><span>'+params[index].seriesName+' : '+params[index].value+'</span></div>'
+            data1 = '<div><span>'+params[index].seriesName+' : '+params[index].value+'万元</span></div>'
             shuju = shuju + data1
           }
           return '<div class=".bigScreen_components_indexCpt_chart1"><div class="waikuang"><div class="zuoshang"><div class="zuoshang1"></div><div class="zuoshang2"></div></div><div class="youshang"><div class="youshang1"></div><div class="youshang2"></div></div><div class="neikuang" ><div><span>'+params[0].name+'</span></div>'+shuju+'</div><div><div class="zuoxia1"></div><div class="zuoxia2"></div></div><div class="youxia"><div class="youxia1"></div><div class="youxia2"></div></div></div></div>';
