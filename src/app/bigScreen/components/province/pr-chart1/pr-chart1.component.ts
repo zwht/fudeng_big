@@ -41,7 +41,6 @@ export class PrChart1Component implements OnInit {
           fontSize: 12,
         },
         formatter: function (params, ticket, callback) {
-            debugger
           return '<div  style="color: red">Loading</div>';
       },
         padding: 10

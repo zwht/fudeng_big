@@ -1,7 +1,10 @@
-<div class="province-cpt"  [@routerTransition]="getState(o)">
+<div class="province-cpt" [@routerTransition]="getState(o)">
     <div [appScaleBox]="bgBox">
         <img style="width: 100%; height: 100%;" src="assets/images/bigScreen/总部-背景.png" alt="">
     </div>
-    <app-pr-title></app-pr-title>
+    <div class="pr-title-cpt" [appScaleBox]="titleCpt">
+        <img style="width: 100%; height: 100%;" src="assets/images/bigScreen/重庆大屏-标题.png" alt="">
+
+    </div>
     <router-outlet #o="outlet"></router-outlet>
 </div>

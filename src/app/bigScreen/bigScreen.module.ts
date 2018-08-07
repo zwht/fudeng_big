@@ -12,10 +12,8 @@ import { Chart4Component } from './components/indexCpt/chart4/chart4.component';
 import { Chart5Component } from './components/indexCpt/chart5/chart5.component';
 import { CentreComponent } from './components/indexCpt/centre/centre.component';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { ChongQingComponent } from './components/province/chong-qing/chong-qing.component';
-import { HuBeiComponent } from './components/province/hu-bei/hu-bei.component';
 import { ProvinceComponent } from './components/province/province.component';
-import { SiChuanComponent } from './components/province/si-chuan/si-chuan.component';
+import { PageComponent } from './components/province/page/page.component';
 import { PrChart1Component } from './components/province/pr-chart1/pr-chart1.component';
 import { PrChart2Component } from './components/province/pr-chart2/pr-chart2.component';
 import { PrChart3Component } from './components/province/pr-chart3/pr-chart3.component';
@@ -30,31 +28,23 @@ export const routes: Routes = [
         }
     },
     {
-        path: 'province',
+        path: '',
         component: ProvinceComponent,
         children: [
             {
-                path: 'siChuan',
-                component: SiChuanComponent,
+                path: 'page1/:id',
+                component: PageComponent,
                 data: {
                     name: '四川',
-                    state:'siChuan'
+                    state: 'siChuan'
                 }
             },
             {
-                path: 'chongQing',
-                component: SiChuanComponent,
+                path: 'page2/:id',
+                component: PageComponent,
                 data: {
                     name: '重庆',
-                    state:'chongQing'
-                }
-            },
-            {
-                path: 'huBei',
-                component: SiChuanComponent,
-                data: {
-                    name: '湖北',
-                    state:'huBei'
+                    state: 'chongQing'
                 }
             }
         ]
@@ -72,12 +62,12 @@ export const routes: Routes = [
         TitleComponent, Chart1Component, Chart2Component,
         Chart3Component, Chart4Component,
         Chart5Component, CentreComponent,
-        ChongQingComponent,PrTitleComponent,
-        HuBeiComponent, ProvinceComponent,
+        PrTitleComponent,
+        ProvinceComponent,
         PrChart1Component, PrChart2Component,
-        PrChart3Component,SiChuanComponent,
+        PrChart3Component, PageComponent,
         PrChart4Component
-        ],
+    ],
     providers: [
         ScaleService
     ],
