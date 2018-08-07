@@ -44,7 +44,7 @@ export class Chart1Component implements OnInit {
         top: '20%',
         right: 'right',
         orient: 'vertical',
-        inactiveColor: 'gray',
+        inactiveColor: 'RGBA(91, 157, 255, 0.3)',
         itemHeight: 0,
         itemWidth: 10,
         textStyle: {
@@ -55,7 +55,7 @@ export class Chart1Component implements OnInit {
       grid: {
         left: '3%',
         right: '15%',
-        bottom: '20%',
+        bottom: '15%',
         containLabel: true,
       },
       xAxis: {
@@ -85,7 +85,13 @@ export class Chart1Component implements OnInit {
       },
       dataZoom: [{
         start: 0,
-        end: 10
+        end: 50,
+        fillerColor : 'RGBA(85, 125, 212, 0.2)',
+        borderColor : 'RGBA(31, 60, 122, 1)',
+        handleSize : '80%',
+        textStyle :{
+          color : '#557DD4',
+        },
       }],
       series: [
         {
