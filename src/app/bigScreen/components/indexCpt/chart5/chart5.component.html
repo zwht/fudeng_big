@@ -1,4 +1,8 @@
-<div class="chart5-cpt"  [appScaleBox]="chart5Cpt">
-
-
+<div class="chart5-cpt" [appScaleBox]="chart5Cpt">
+  <div class="wei">单位: 位</div>
+  <div class="zongshu">
+    <div class="zsdata">{{zongshu}}</div>
+    <div class="zs">总数</div>
   </div>
+  <div class="biao" echarts [options]="chartOption"></div>
+</div>
