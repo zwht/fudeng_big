@@ -66,9 +66,9 @@ export class PrTitleComponent implements OnInit {
   play() {
     this.getNextMenu();
     if (this.actPath) {
-      this.router.navigate(['/page1', this.activePage.path]);
+      this.router.navigate(['/province1', this.activePage.path]);
     } else {
-      this.router.navigate(['/page2', this.activePage.path]);
+      this.router.navigate(['/province2', this.activePage.path]);
     }
     setTimeout(() => {
       this.titleService.setTitle('' + this.activePage.name);
