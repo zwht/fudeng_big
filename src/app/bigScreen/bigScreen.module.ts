@@ -19,6 +19,7 @@ import { PrChart2Component } from './components/province/pr-chart2/pr-chart2.com
 import { PrChart3Component } from './components/province/pr-chart3/pr-chart3.component';
 import { PrChart4Component } from './components/province/pr-chart4/pr-chart4.component';
 import { PrTitleComponent } from './components/province/pr-title/pr-title.component';
+import { TopTimeComponent } from './components/common/top-time/top-time.component';
 export const routes: Routes = [
     {
         path: '',
@@ -66,7 +67,8 @@ export const routes: Routes = [
         ProvinceComponent,
         PrChart1Component, PrChart2Component,
         PrChart3Component, PageComponent,
-        PrChart4Component
+        PrChart4Component,
+        TopTimeComponent
     ],
     providers: [
         ScaleService

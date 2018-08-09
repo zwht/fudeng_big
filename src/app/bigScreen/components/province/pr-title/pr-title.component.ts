@@ -49,12 +49,7 @@ export class PrTitleComponent implements OnInit {
     left: 1570,
     top: 41,
   }
-  item7={
-    width: 290,
-    height: 70,
-    left: 1680,
-    top: 41,
-  }
+
 
 
   id

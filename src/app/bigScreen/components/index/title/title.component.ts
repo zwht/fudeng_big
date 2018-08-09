@@ -42,12 +42,7 @@ export class TitleComponent implements OnInit {
     left: 1469,
     top: 41,
   }
-  item7={
-    width: 290,
-    height: 70,
-    left: 1680,
-    top: 41,
-  }
+
   constructor() { }
 
   ngOnInit() {
