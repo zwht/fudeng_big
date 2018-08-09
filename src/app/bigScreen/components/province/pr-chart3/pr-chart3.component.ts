@@ -99,18 +99,18 @@ export class PrChart3Component implements OnInit {
           animation: false,
           barWidth: 10,
           markLine: {
-            silent :true,
-            symbol :'none',
-            label :{
-              position :'end',
-              formatter :'{b}\n85%'
+            silent: true,
+            symbol: 'none',
+            label: {
+              position: 'end',
+              formatter: '{b}\n85%'
             },
             data: [
               {
                 name: '目标 Target',
                 yAxis: 85,
-                lineStyle :{
-                  color : 'RGBA(85, 125, 212, 1)'
+                lineStyle: {
+                  color: 'RGBA(85, 125, 212, 1)'
                 }
               },
             ]
