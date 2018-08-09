@@ -1,0 +1,11 @@
+
+@font-face {font-family: "DigifaceWideRegular";
+  src: url('DigifaceWideRegular.ttf?t=1519899342204') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+}
+
+.DigifaceWideRegular {
+  font-family:"DigifaceWideRegular" !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
