@@ -1,4 +1,54 @@
 <div class="pr-title-cpt" [appScaleBox]="titleCpt">
-  <img style="width: 100%; height: 100%;" src="assets/images/bigScreen/重庆大屏-标题.png" alt="">
-
+  <img style="width: 100%; height: 100%;" src="assets/images/bigScreen/总部-标题.png" alt="">
+  <div class="topBtn">
+    <span *ngIf="!isPaly" (click)="playClick(true)"><i class="anticon anticon-caret-right"></i></span>
+    <span *ngIf="isPaly" (click)="playClick(false)"><i class="anticon anticon-pause"></i></span>
+    <span><i class="anticon anticon-setting"></i></span>
+  </div>
+  <div class="item" scaleDiv=true [appScaleBox]="item1">
+    <h2>本月新增贷款</h2>
+    <div>
+      <b>1,456,786</b>
+      <span>元</span>
+    </div>
+  </div>
+  <div class="item" scaleDiv=true [appScaleBox]="item2">
+    <h2>本月新增客户</h2>
+    <div>
+      <b>793</b>
+      <span>位</span>
+    </div>
+  </div>
+  <div class="item" scaleDiv=true [appScaleBox]="item3">
+    <h2>存量贷款</h2>
+    <div>
+      <b>56,786</b>
+      <span>万元</span>
+    </div>
+  </div>
+  <div class="item" scaleDiv=true [appScaleBox]="item4">
+    <h2>存量客户</h2>
+    <div>
+      <b>165,807</b>
+      <span>位</span>
+    </div>
+  </div>
+  <div class="item" scaleDiv=true [appScaleBox]="item5">
+    <h2>分公司数量</h2>
+    <div>
+      <b>38</b>
+      <span>个</span>
+    </div>
+  </div>
+  <div class="item" scaleDiv=true [appScaleBox]="item6">
+    <h2>营销点数量</h2>
+    <div>
+      <b>46</b>
+      <span>个</span>
+    </div>
+  </div>
+  <div class="time" scaleDiv=true [appScaleBox]="item7">
+    <p>15:23:47</p>
+    <p>13-06-2018 Web</p>
+  </div>
 </div>

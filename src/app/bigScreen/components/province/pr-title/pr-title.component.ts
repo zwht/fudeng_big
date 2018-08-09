@@ -13,6 +13,49 @@ export class PrTitleComponent implements OnInit {
     left: 0,
     top: 0,
   }
+  item1={
+    width: 240,
+    height: 70,
+    left: 86,
+    top: 41,
+  }
+  item2={
+    width: 240,
+    height: 70,
+    left: 335,
+    top: 41,
+  }
+  item3={
+    width: 240,
+    height: 70,
+    left: 533,
+    top: 41,
+  }
+  item4={
+    width: 240,
+    height: 70,
+    left: 1231,
+    top: 41,
+  }
+  item5={
+    width: 240,
+    height: 70,
+    left: 1439,
+    top: 41,
+  }
+  item6={
+    width: 240,
+    height: 70,
+    left: 1570,
+    top: 41,
+  }
+  item7={
+    width: 290,
+    height: 70,
+    left: 1680,
+    top: 41,
+  }
+
 
   id
   key = 0
@@ -20,6 +63,7 @@ export class PrTitleComponent implements OnInit {
   isPaly = false;
   activePage;
   actPath = true;
+  jgTime=15000;
   menu = [
     {
       path: 'siChuan',
@@ -49,6 +93,10 @@ export class PrTitleComponent implements OnInit {
     })
     this.palyInterval();
   }
+  playClick(key){
+    this.isPaly=key;
+    this.palyInterval();
+  }
   //动画方法
   getState(outlet) {
     return outlet.activatedRouteData.state;
@@ -59,7 +107,7 @@ export class PrTitleComponent implements OnInit {
     if (this.isPaly) {
       this.palyTime = setInterval(() => {
         this.play();
-      }, 5000)
+      }, this.jgTime)
     }
   }
   //播放下一个菜单
