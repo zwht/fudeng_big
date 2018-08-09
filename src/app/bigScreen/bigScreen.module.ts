@@ -4,13 +4,13 @@ import { ShareModule } from '../share/share.module';
 import { IndexComponent } from './components/index/index.component';
 import { ScaleService } from './service/scale.service';
 import { ScaleBoxDirective } from './directives/scale-box.directive';
-import { TitleComponent } from './components/indexCpt/title/title.component';
-import { Chart1Component } from './components/indexCpt/chart1/chart1.component';
-import { Chart2Component } from './components/indexCpt/chart2/chart2.component';
-import { Chart3Component } from './components/indexCpt/chart3/chart3.component';
-import { Chart4Component } from './components/indexCpt/chart4/chart4.component';
-import { Chart5Component } from './components/indexCpt/chart5/chart5.component';
-import { CentreComponent } from './components/indexCpt/centre/centre.component';
+import { TitleComponent } from './components/index/title/title.component';
+import { Chart1Component } from './components/index/chart1/chart1.component';
+import { Chart2Component } from './components/index/chart2/chart2.component';
+import { Chart3Component } from './components/index/chart3/chart3.component';
+import { Chart4Component } from './components/index/chart4/chart4.component';
+import { Chart5Component } from './components/index/chart5/chart5.component';
+import { CentreComponent } from './components/index/centre/centre.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { ProvinceComponent } from './components/province/province.component';
 import { PageComponent } from './components/province/page/page.component';
@@ -32,7 +32,7 @@ export const routes: Routes = [
         component: ProvinceComponent,
         children: [
             {
-                path: 'page1/:id',
+                path: 'province1/:id',
                 component: PageComponent,
                 data: {
                     name: '四川',
@@ -40,7 +40,7 @@ export const routes: Routes = [
                 }
             },
             {
-                path: 'page2/:id',
+                path: 'province2/:id',
                 component: PageComponent,
                 data: {
                     name: '重庆',
