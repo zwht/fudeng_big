@@ -17,7 +17,7 @@ export class PrTitleComponent implements OnInit {
   id
   key = 0
   palyTime;
-  isPaly = true;
+  isPaly = false;
   activePage;
   actPath = true;
   menu = [
