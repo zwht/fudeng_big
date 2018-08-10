@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PrChart1Component implements OnInit {
   chartBox = {
     width: 900,
-    height: 450,
+    height: 400,
     left: 50,
     top: 128,
   };
