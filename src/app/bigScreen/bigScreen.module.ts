@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ShareModule } from '../share/share.module';
 import { IndexComponent } from './components/index/index.component';
-import { ScaleService } from './service/scale.service';
 import { ScaleBoxDirective } from './directives/scale-box.directive';
 import { TitleComponent } from './components/index/title/title.component';
 import { Chart1Component } from './components/index/chart1/chart1.component';
@@ -69,9 +68,6 @@ export const routes: Routes = [
         PrChart3Component, PageComponent,
         PrChart4Component,
         TopTimeComponent
-    ],
-    providers: [
-        ScaleService
-    ],
+    ]
 })
 export class BigScreenModule { }

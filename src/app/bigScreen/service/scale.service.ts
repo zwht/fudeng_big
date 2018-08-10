@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable, fromEvent } from 'rxjs';
+
+import { fromEvent, Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-@Injectable()
-export class ScaleService {
+
+class ScaleService {
   uiWidth = 1920;
   uiHeight = 1080;
   bodyWidth = window.document.body.clientWidth;
@@ -11,24 +11,21 @@ export class ScaleService {
   heightScale = 1;
   left = 0;
   top = 0;
-  sizeChangObservable: any;
+  sizeChangObservable = new Subject();
   scaling = false; // true铺满窗口，false最小铺满
   minScale = 0.5;
 
   constructor() {
     this.init();
     const thant = this;
-    this.sizeChangObservable = Observable
-      .create(function (observer) {
-        fromEvent(window, 'resize')
-          .pipe(
-            debounceTime(100), // 加点去抖，毕竟 `resize` 频率非常高
-        )
-          .subscribe((event) => {
-            // 这里处理页面变化时的操作
-            thant.init();
-            observer.next(thant);
-          });
+    fromEvent(window, 'resize')
+      .pipe(
+        debounceTime(100), // 加点去抖，毕竟 `resize` 频率非常高
+    )
+      .subscribe((event) => {
+        // 这里处理页面变化时的操作
+        thant.init();
+        this.sizeChangObservable.next(thant)
       });
   }
   init() {
@@ -58,3 +55,5 @@ export class ScaleService {
     document.documentElement.style.fontSize = this.widthScale * 100 + 'px';
   }
 }
+
+export const scale = new ScaleService();
