@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScaleService } from 'src/app/bigScreen/service/scale.service';
+import { scale } from 'src/app/bigScreen/service/scale.service';
 
 @Component({
   selector: 'app-pr-chart3',
@@ -18,12 +18,12 @@ export class PrChart3Component implements OnInit {
   dataShadow = []
   dataAxis = ['成都城北分公司', '成都崇州分公司', '成都简阳服务中心', '成都彭州分公司', '成都郫县分公司', '成都双流分公司', '成都新都分公司', '成都新津分公司', '成都营业部', '成都营业二部', '昆明营业部', '四川达州分公司', '四川德阳分公司', '四川泸州服务中心', '四川眉山服务中心', '四川绵阳营销部', '四川内江分公司', '四川自贡营销部']
   constructor(
-    private scaleService: ScaleService
+
   ) { }
   chartOption = {}
 
   proportion(i) {
-    i = i * this.scaleService.widthScale
+    i = i * scale.widthScale
     return i
   }
   YMax() {

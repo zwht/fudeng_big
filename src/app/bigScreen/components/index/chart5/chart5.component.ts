@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { window } from '../../../../../../node_modules/rxjs/operators';
-import { ScaleService } from 'src/app/bigScreen/service/scale.service';
+import { scale } from 'src/app/bigScreen/service/scale.service';
 
 @Component({
   selector: 'app-chart5',
@@ -17,10 +17,10 @@ export class Chart5Component implements OnInit {
   zongshu = 3026
   chartOption = {}
   constructor(
-    private scaleService: ScaleService
+   
   ) {}
   proportion(i) {
-    i = i * this.scaleService.widthScale
+    i = i * scale.widthScale
     debugger
     return i
   }

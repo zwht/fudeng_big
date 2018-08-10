@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScaleService } from '../../service/scale.service';
+import { scale } from '../../service/scale.service';
 import { UserService } from '../../../share/restServices/UserService';
 
 @Component({

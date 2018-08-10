@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScaleService } from 'src/app/bigScreen/service/scale.service';
+import { scale } from 'src/app/bigScreen/service/scale.service';
 
 @Component({
   selector: 'app-chart2',
@@ -20,7 +20,6 @@ export class Chart2Component implements OnInit {
 
   chartOption = {}
   constructor(
-    private scaleService: ScaleService
   ) { }
 
   YMax() {
@@ -31,7 +30,7 @@ export class Chart2Component implements OnInit {
   }
 
   proportion(i) {
-    i = i * this.scaleService.widthScale
+    i = i * scale.widthScale
     return i
   }
 

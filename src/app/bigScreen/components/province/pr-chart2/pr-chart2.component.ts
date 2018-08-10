@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScaleService } from 'src/app/bigScreen/service/scale.service';
+import { scale } from 'src/app/bigScreen/service/scale.service';
 
 @Component({
   selector: 'app-pr-chart2',
@@ -15,11 +15,11 @@ export class PrChart2Component implements OnInit {
   }
   chartOption = {}
   constructor(
-    private scaleService: ScaleService
+    
   ) { }
 
   proportion(i) {
-    i = i * this.scaleService.widthScale
+    i = i * scale.widthScale
     return i
   }
 
