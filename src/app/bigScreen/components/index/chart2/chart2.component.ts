@@ -50,6 +50,7 @@ export class Chart2Component implements OnInit {
           fontWeight: 'normal'
         }
       },
+
       grid: {
         left: this.proportion(33),
         right: this.proportion(42),
@@ -76,33 +77,38 @@ export class Chart2Component implements OnInit {
       },
 
       yAxis: {
-        axisTick: {
+        axisLine: {
+          show:false,
+        },
+        axisTick :{
           show: false,
         },
-        axisLine: {
-          show: false,
-          lineStyle: {
-            color: '#557DD4',
-          }
+        axisLabel :{
+          color: '#557DD4',
+          margin : this.proportion(0),
+          fontSize :this.proportion(12),
         },
         splitLine: {
-          show: false,
+          show:false,
         },
         type: 'value'
       },
 
       tooltip: {
         trigger: 'axis',
+        axisPointer:{
+          lineStyle :{
+            color : 'RGBA(18, 79, 255, 0)'
+          },
+        },
         backgroundColor: 'rgba(50,50,50,0)',
         formatter: function (params, ticket, callback) {
           let shuju = ''
           shuju = '<div><span>' + params[1].value + '万元</span></div>'
           return '<div class=".bigScreen_components_indexCpt_chart1"><div class="waikuang"><div class="zuoshang"><div class="zuoshang1"></div><div class="zuoshang2"></div></div><div class="youshang"><div class="youshang1"></div><div class="youshang2"></div></div><div class="neikuang" ><div><span>' + params[0].name + '</span></div>' + shuju + '</div><div><div class="zuoxia1"></div><div class="zuoxia2"></div></div><div class="youxia"><div class="youxia1"></div><div class="youxia2"></div></div></div></div>';
         },
-        padding: 10
+        padding: this.proportion(10),
       },
-
-      barWidth: 28,
       series: [{
         type: 'bar',
         itemStyle: {
@@ -125,6 +131,7 @@ export class Chart2Component implements OnInit {
         data: this.dataShadow2,
         type: 'bar',
         stack: 'sum',
+        barWidth : this.proportion(28),
         itemStyle: {
           color: 'RGBA(247, 146, 83, 1)'
         },

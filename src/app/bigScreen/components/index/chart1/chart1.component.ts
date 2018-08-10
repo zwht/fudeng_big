@@ -39,6 +39,11 @@ export class Chart1Component implements OnInit {
 
       tooltip: {
         trigger: 'axis',
+        axisPointer:{
+          lineStyle :{
+            color : 'RGBA(18, 79, 255, 0.5)'
+          },
+        },
         backgroundColor: 'rgba(50,50,50,0)',
         formatter: function (params, ticket, callback) {
           let shuju = ''
