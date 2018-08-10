@@ -1,3 +1,181 @@
-.pr-chart1-cpt{ background:rgba(125,158,255,0.04);
-  >div{height: 100%; width: 100%;}
+.pr-chart1-cpt {
+    background: rgba(125, 158, 255, 0.04);
+    position: relative;
+    .map {
+        margin-left: 2.5%;
+        margin-top: -1%;
+    }
+}
+
+.cylinders {
+    position: absolute;
+    width: 2rem;
+    height: 2.08rem; // border: solid 1px #fff;
+    bottom: 42%;
+    left: 10%;
+    .cylinder-item {
+        display: inline-block;
+        height: 100%;
+        width: .5rem; // border: solid 1px #fff;
+        position: relative;
+        padding-bottom: .2rem;
+        &.active {
+            background-image: url('/assets/images/bigScreen/p-map/选中.png');
+            background-repeat: no-repeat;
+            background-position: center bottom;
+            background-size: 100% auto;
+        }
+    }
+    &.siChuan{
+        left: 10%;
+        .yellow{
+            bottom: 22%;
+            left: 5%;
+        }
+        .green{
+            bottom: 11%;
+            left: 15%;
+        }
+        .blue{
+            bottom: -8%;
+            left: 30%;
+        }
+    }
+    &.chongQing{
+        left: 33%;
+        bottom: 20%;
+        .yellow{
+            left: 5%;
+            bottom: 5%;
+        }
+        .green{
+            left: 6%;
+            bottom: 17.5%;
+        }
+        .blue{
+            left: 12.5%;
+            bottom: 20.5%;
+        }
+    }
+    &.huBei{
+        left: 55.8%;
+        bottom: 21.5%;
+        .yellow{
+            left: 7%;
+            bottom: -2%;
+        }
+        .green{
+            left: 9%;
+            bottom: 2%;
+        }
+        .blue{
+            left: 6%;
+            bottom: -15%;
+        }
+    }
+}
+
+.cylinder-box {
+    width: .1rem;
+    margin: 0 auto;
+    height: 100%;
+    background-image: url('/assets/images/bigScreen/p-map/底色.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% auto;
+    position: relative;
+    .cylinder-target {
+        position: absolute;
+        width: 0.11rem;
+        height: 0.07rem;
+        background-image: url('/assets/images/bigScreen/p-map/目标.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% auto;
+        bottom: 80%;
+    }
+    .cylinder-data {
+        height: 70%;
+        width: 0.1rem;
+        position: absolute;
+        bottom: 0;
+        background-image: url('/assets/images/bigScreen/p-map/柱2.png');
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 100% auto;
+    }
+    .cylinder-top {
+        position: absolute;
+        top: calc(100% - 71%);
+        width: 0.11rem;
+        height: 0.04rem;
+        background-image: url('/assets/images/bigScreen/p-map/方型2.png');
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 100% auto;
+    }
+    .number{
+        position: absolute;
+        top: -.25rem;
+        color: #fff;
+        font-size: .12rem;
+        width: .4rem;
+        left: 50%;
+        margin-left: -.2rem;
+        text-align: center;
+        opacity: .8;
+    }
+}
+
+.cylinder-item {
+    &.red {
+        .cylinder-data {
+            background-image: url('/assets/images/bigScreen/p-map/柱1.png');            
+        }
+        .cylinder-top {
+            background-image: url('/assets/images/bigScreen/p-map/方型1.png');            
+        }
+        .number{
+            color: #FE7189;
+        }
+    }
+    &.yellow {
+        .cylinder-data {
+            background-image: url('/assets/images/bigScreen/p-map/柱2.png');
+            height: 35%;
+        }
+        .cylinder-top {
+            background-image: url('/assets/images/bigScreen/p-map/方型2.png');
+            top: calc(100% - 35%);
+        }
+        .number{
+            color: #E48B24;
+        }
+    }
+    &.green {
+        .cylinder-data {
+            background-image: url('/assets/images/bigScreen/p-map/柱3.png');
+            height: 55%;
+        }
+        .cylinder-top {
+            background-image: url('/assets/images/bigScreen/p-map/方型3.png');
+            top: calc(100% - 55%);
+        }
+        .number{
+            color: #49AE55;
+        }
+    }
+    &.blue {
+        .cylinder-data {
+            background-image: url('/assets/images/bigScreen/p-map/柱4.png');
+            height: 88%;
+        }
+        .cylinder-top {
+            background-image: url('/assets/images/bigScreen/p-map/方型4.png');
+            top: calc(100% - 88%);
+        }
+        .number{
+            color: #7D9EFF;
+        }
+    }            
 }

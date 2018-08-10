@@ -1,3 +1,37 @@
-<div class="pr-chart1-cpt"  [appScaleBox]="chartBox">
-    <div echarts [options]="chartOption"></div>
+<div class="pr-chart1-cpt" [appScaleBox]="chartBox">
+    <img class="map" style="width: 100%; height: 100%;" src="assets/images/bigScreen/总部-{{current.map}}.png" alt="">
+    <div class="cylinders" [ngClass]="current.mapName">
+        <div class="cylinder-item red" [class.active]="current.active=='red'">
+            <div class="cylinder-box">
+                <div class="cylinder-data" [ngStyle]="{height: percent(current.red)}"></div>
+                <div class="cylinder-target" [ngStyle]="{bottom: percent(current.target)}"></div>
+                <div class="cylinder-top" [ngStyle]="{top: 'calc(100% - '+percent(current.red)+')'}"></div>
+                <span class="number">{{percent(current.red)}}</span>
+            </div>
+        </div>
+        <div class="cylinder-item yellow" [class.active]="current.active=='yellow'">
+            <div class="cylinder-box">
+                <div class="cylinder-data" [ngStyle]="{height: percent(current.yellow)}"></div>
+                <div class="cylinder-target" [ngStyle]="{bottom: percent(current.target)}"></div>
+                <div class="cylinder-top" [ngStyle]="{top: 'calc(100% - '+percent(current.yellow)+')'}"></div>
+                <span class="number">{{percent(current.yellow)}}</span>
+            </div>
+        </div>
+        <div class="cylinder-item green" [class.active]="current.active=='green'">
+            <div class="cylinder-box">
+                <div class="cylinder-data" [ngStyle]="{height: percent(current.green)}"></div>
+                <div class="cylinder-target" [ngStyle]="{bottom: percent(current.target)}"></div>
+                <div class="cylinder-top" [ngStyle]="{top: 'calc(100% - '+percent(current.green)+')'}"></div>
+                <span class="number">{{percent(current.green)}}</span>
+            </div>
+        </div>
+        <div class="cylinder-item active blue" [class.active]="current.active=='blue'">
+            <div class="cylinder-box">
+                <div class="cylinder-data" [ngStyle]="{height: percent(current.blue)}"></div>
+                <div class="cylinder-target" [ngStyle]="{bottom: percent(current.target)}"></div>
+                <div class="cylinder-top" [ngStyle]="{top: 'calc(100% - '+percent(current.blue)+')'}"></div>
+                <span class="number">{{percent(current.blue)}}</span>
+            </div>
+        </div>
+    </div>
 </div>
