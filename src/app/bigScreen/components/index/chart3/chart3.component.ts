@@ -59,7 +59,7 @@ export class Chart3Component implements OnInit {
         },
         nameGap : 5,
         indicator: this.indicator,
-        radius: 90,
+        radius: '75%',
 
         splitLine: {
           lineStyle: {
