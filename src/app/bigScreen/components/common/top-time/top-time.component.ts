@@ -22,7 +22,6 @@ export class TopTimeComponent implements OnInit {
     this.getDate()
     this.intervalTime=setInterval(()=>{
       this.getDate()
-      debugger
     },1000)
   }
   getDate(){
