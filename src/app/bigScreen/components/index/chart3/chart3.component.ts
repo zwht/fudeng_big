@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScaleService } from 'src/app/bigScreen/service/scale.service';
 
 
 @Component({
@@ -25,23 +26,33 @@ export class Chart3Component implements OnInit {
   { text: '潭州教育', max: 2400 }
 ]
 
-  constructor() { }
+  constructor(
+    private scaleService: ScaleService
+  ) { }
+  proportion(i) {
+    i = i * this.scaleService.widthScale
+    debugger
+    return i
+  }
 
   ngOnInit() {
     let that = this
 
     this.chartOption = {
       title: {
-        text: '当前贷款投放总量  Total loan amount',
-        left: '30px',
+        text: '当前贷款投放总量   Total loan amount',
+        top: this.proportion(0),
+        left: this.proportion(96),
         textStyle: {
           color: "#9CC4FF",
-          fontWeight: '16px',
+          fontSize: this.proportion(16),
+          fontWeight: 'normal'
         }
       },
+
       tooltip: {
         trigger: 'item',
-        backgroundColor: 'rgba(50,50,50,0)',
+        backgroundColor: 'rgba(0,0,0,0)',
         formatter: function (params, ticket, callback) {
           let data = ''
           for (let index = 0; index < params.data.value.length; index++) {
@@ -50,31 +61,35 @@ export class Chart3Component implements OnInit {
           }
           return '<div class=".bigScreen_components_indexCpt_chart1"><div class="waikuang"><div class="zuoshang"><div class="zuoshang1"></div><div class="zuoshang2"></div></div><div class="youshang"><div class="youshang1"></div><div class="youshang2"></div></div><div class="neikuang" ><div>'+data+'</div></div><div><div class="zuoxia1"></div><div class="zuoxia2"></div></div><div class="youxia"><div class="youxia1"></div><div class="youxia2"></div></div></div></div>';
         },
-        padding: 10
+        padding: this.proportion(10)
       },
-      radar:
-      {
-        name:{
-          color : 'RGBA(85, 125, 212, 1)'
-        },
-        nameGap : 5,
-        indicator: this.indicator,
-        radius: 90,
 
+      radar:{
+        name:{
+          color : 'RGBA(85, 125, 212, 1)',
+          fontSize :this.proportion(12)
+        },
+        nameGap : this.proportion(5),
+        indicator: this.indicator,
+        center: [this.proportion(200), this.proportion(230)],
+        radius: this.proportion(157),
         splitLine: {
           lineStyle: {
             color: 'RGBA(31, 60, 122, 1)',
           }
         },
-        splitArea: {
-          show: false
-        },
         axisLine: {
           lineStyle: {
-            color: 'RGBA(31, 60, 122, 1)'
+            color: 'RGBA(31, 60, 122, 1)',
+          }
+        },
+        splitArea: {
+          areaStyle:{
+            color: 'RGBA(0,0,0,0.4)',
           }
         },
       },
+
       series: [
         {
           itemStyle: {
@@ -84,7 +99,7 @@ export class Chart3Component implements OnInit {
             width: 0
           },
           symbol: "circle",
-          symbolSize: 6,
+          symbolSize: this.proportion(6),
           type: 'radar',
 
           data: [{
@@ -92,7 +107,6 @@ export class Chart3Component implements OnInit {
             value: [2000, 2100, 1900, 1800, 1600, 2200, 2300, 1700],
             areaStyle: {
               normal: {
-                opacity: 0.7,
                 color: new window['echarts'].graphic.RadialGradient(0.5, 0.5, 0.5, [
                   {
                     color: 'RGBA(154, 103, 73, 0)',

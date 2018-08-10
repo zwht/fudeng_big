@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { window } from '../../../../../../node_modules/rxjs/operators';
+import { ScaleService } from 'src/app/bigScreen/service/scale.service';
 
 @Component({
   selector: 'app-chart5',
@@ -15,18 +16,26 @@ export class Chart5Component implements OnInit {
   }
   zongshu = 3026
   chartOption = {}
-  constructor() { }
+  constructor(
+    private scaleService: ScaleService
+  ) {}
+  proportion(i) {
+    i = i * this.scaleService.widthScale
+    debugger
+    return i
+  }
 
   ngOnInit() {
     let that = this
     this.chartOption = {
       title: {
         text: '当前贷款客户总数   Total number of loan customers',
-        top: '5px',
-        left: '10px',
+        top: this.proportion(0),
+        left: this.proportion(50),
         textStyle: {
           color: "#9CC4FF",
-          fontWeight: '16px',
+          fontSize: this.proportion(16),
+          fontWeight: 'normal'
         }
       },
 
@@ -41,15 +50,17 @@ export class Chart5Component implements OnInit {
         },
         padding: 10
       },
+
       legend: {
-        top: 'middle',
-        right: 'right',
+        top: this.proportion(130),
+        right : this.proportion(57),
         orient: 'vertical',
-        itemWidth :3,
-        itemHeight :3,
+        itemWidth :this.proportion(3),
+        itemHeight :this.proportion(3),
         inactiveColor: 'RGBA(91, 157, 255, 0.3)',
         textStyle: {
           color: '#5B9DFF',
+          fontSize:this.proportion(12),
         },
         data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
       },
@@ -57,8 +68,8 @@ export class Chart5Component implements OnInit {
       series: [
         {
           type: 'pie',
-          radius: ['55%', '70%'],
-          center:['40%', '50%'],
+          radius: [this.proportion(105), this.proportion(140)],
+          center:[this.proportion(200), this.proportion(250)],
           avoidLabelOverlap: false,
           label: {
             normal: {
