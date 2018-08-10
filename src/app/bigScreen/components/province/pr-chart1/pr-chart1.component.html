@@ -19,10 +19,10 @@
         </div>
         <div class="cylinder-item green" [class.active]="current.active=='green'">
             <div class="cylinder-box">
-                <div class="cylinder-data" [ngStyle]="{height: percent(current.green)}"></div>
+                <div class="cylinder-data" [ngStyle]="{height: myPrecent.transform(current.green)}"></div>
                 <div class="cylinder-target" [ngStyle]="{bottom: percent(current.target)}"></div>
                 <div class="cylinder-top" [ngStyle]="{top: 'calc(100% - '+percent(current.green)+')'}"></div>
-                <span class="number">{{percent(current.green)}}</span>
+                <span class="number">{{myPrecent.transform(current.green)}}</span>
             </div>
         </div>
         <div class="cylinder-item active blue" [class.active]="current.active=='blue'">
@@ -34,4 +34,10 @@
             </div>
         </div>
     </div>
+    <ul class="cylinders-nav">
+        <li>
+            <span class="img target"></span>
+
+        </li>
+    </ul>
 </div>

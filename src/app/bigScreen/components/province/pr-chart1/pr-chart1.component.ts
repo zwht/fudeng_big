@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PercentPipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pr-chart1',
@@ -24,14 +26,25 @@ export class PrChart1Component implements OnInit {
     active: 'green'
   };
 
+  map = {
+    chongQing: '重庆',
+    siChuan: '四川',
+    huBei: '湖北'
+  };
+
   percent(data) {
-    return Number(data * 100).toFixed(1) + '%';
+    return this.myPrecent.transform(data);
+    // return Number(data * 100).toFixed(1) + '%';
   }
 
-  constructor() { }
+  constructor(public myPrecent: PercentPipe, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
+    this.current = {
+      ...this.current,
+      map: this.map[this.route.snapshot.paramMap.get('id')],
+      mapName: this.route.snapshot.paramMap.get('id')
+    };
   }
 
 }

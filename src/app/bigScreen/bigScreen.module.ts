@@ -19,6 +19,7 @@ import { PrChart3Component } from './components/province/pr-chart3/pr-chart3.com
 import { PrChart4Component } from './components/province/pr-chart4/pr-chart4.component';
 import { PrTitleComponent } from './components/province/pr-title/pr-title.component';
 import { TopTimeComponent } from './components/common/top-time/top-time.component';
+import { LowerCasePipe, PercentPipe } from '../../../node_modules/@angular/common';
 export const routes: Routes = [
     {
         path: '',
@@ -67,7 +68,11 @@ export const routes: Routes = [
         PrChart1Component, PrChart2Component,
         PrChart3Component, PageComponent,
         PrChart4Component,
-        TopTimeComponent
-    ]
+        TopTimeComponent,
+    ],
+    providers: [
+        LowerCasePipe,
+        PercentPipe
+    ],
 })
 export class BigScreenModule { }
