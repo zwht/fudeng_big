@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { window } from '../../../../../../node_modules/rxjs/operators';
 import { scale } from 'src/app/bigScreen/service/scale.service';
-import { BigScreenService } from 'src/app/share/restServices/bigScreen';
-import { fdatasync } from 'fs';
+import { BigScreenService } from 'src/app/share/restServices/BigScreen';
 
 @Component({
   selector: 'app-chart5',

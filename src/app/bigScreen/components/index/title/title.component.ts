@@ -45,7 +45,13 @@ export class TitleComponent implements OnInit {
     top: 41,
   };
 
-  titleInfo = {};
+  titleInfo = {
+    newLoanAmount:'',
+    loanAmountSum:0,
+    loanBalance:'',
+    newLoans:'',
+    loansCount:''
+  };
 
   constructor(private bigScreenService: BigScreenService) {
 

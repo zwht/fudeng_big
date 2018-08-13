@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { scale } from 'src/app/bigScreen/service/scale.service';
-import { BigScreenService } from 'src/app/share/restServices/bigScreen';
+import { BigScreenService } from 'src/app/share/restServices/BigScreen';
 
 
 @Component({
