@@ -1,49 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { BigScreenService } from '../../../../share/restServices/BigScreen';
+
 @Component({
   selector: 'app-pr-title',
   templateUrl: './pr-title.component.html',
   styleUrls: ['./pr-title.component.less']
 })
 export class PrTitleComponent implements OnInit {
-  titleCpt={
+  titleCpt = {
     width: 1920,
     height: 90,
     left: 0,
     top: 0,
   }
-  item1={
+  item1 = {
     width: 240,
     height: 70,
     left: 86,
     top: 41,
   }
-  item2={
+  item2 = {
     width: 240,
     height: 70,
     left: 335,
     top: 41,
   }
-  item3={
+  item3 = {
     width: 240,
     height: 70,
     left: 533,
     top: 41,
   }
-  item4={
+  item4 = {
     width: 240,
     height: 70,
     left: 1231,
     top: 41,
   }
-  item5={
+  item5 = {
     width: 240,
     height: 70,
     left: 1439,
     top: 41,
   }
-  item6={
+  item6 = {
     width: 240,
     height: 70,
     left: 1570,
@@ -58,37 +60,45 @@ export class PrTitleComponent implements OnInit {
   isPaly = false;
   activePage;
   actPath = true;
-  jgTime=5000;
+  jgTime = 5000;
   menu = [
     {
       path: 'siChuan',
-      name:'四川'
+      name: '四川'
     },
     {
       path: 'chongQing',
-      name:'重庆'
+      name: '重庆'
     },
     {
       path: 'huBei',
-      name:'湖北'
+      name: '湖北'
     }
   ]
+  headerInfo = {};
   constructor(
+    private bigScreenService: BigScreenService,
     private titleService: Title,
     private router: Router,
     private activatedRoute: ActivatedRoute, ) { }
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.params['id'];
-    this.menu.forEach(item=>{
-      if(this.router.url.indexOf(item.path)>-1){
-        this.activePage=item;
+    this.menu.forEach(item => {
+      if (this.router.url.indexOf(item.path) > -1) {
+        this.activePage = item;
       }
     })
     this.palyInterval();
+    this.initTitle();
   }
-  playClick(key){
-    this.isPaly=key;
+  initTitle() {
+    this.bigScreenService['basic']({}).then(rep => {
+      this.headerInfo = rep.data;
+    }).catch(error => { });
+  }
+  playClick(key) {
+    this.isPaly = key;
     this.palyInterval();
   }
   //动画方法
@@ -135,7 +145,7 @@ export class PrTitleComponent implements OnInit {
       this.activePage = this.menu[0]
     }
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     if (this.palyTime) clearInterval(this.palyTime)
   }
 }

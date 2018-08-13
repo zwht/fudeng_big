@@ -6,7 +6,7 @@ import { HttpServer } from '../services/HttpServer';
 @Injectable({
     providedIn: 'root'
 })
-export class bigScreenService {
+export class BigScreenService {
 
     url = '/v1/bigscreen/:params1/:params2/:params3/:params4/:params5';
     urls = {

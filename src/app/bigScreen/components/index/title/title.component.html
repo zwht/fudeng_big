@@ -1,40 +1,40 @@
 <div class="title-cpt" [appScaleBox]="titleCpt">
-  <img style="width: 100%; height: 100%;" src="assets/images/bigScreen/重庆大屏-标题.png" alt="">
-  <div class="item" scaleDiv=true [appScaleBox]="item1">
-    <h2>今日贷款投放量</h2>
-    <div>
-      <b>456,786</b>
-      <span>万元</span>
+    <img style="width: 100%; height: 100%;" src="assets/images/bigScreen/重庆大屏-标题.png" alt="">
+    <div class="item" scaleDiv=true [appScaleBox]="item1">
+        <h2>今日贷款投放量</h2>
+        <div>
+            <b>{{titleInfo.newLoanAmount  | number: '3.2-3'}}</b>
+            <span>万元</span>
+        </div>
     </div>
-  </div>
-  <div class="item" scaleDiv=true [appScaleBox]="item2">
-    <h2>贷款投放总量</h2>
-    <div>
-      <b>7.93</b>
-      <span>亿元</span>
+    <div class="item" scaleDiv=true [appScaleBox]="item2">
+        <h2>贷款投放总量</h2>
+        <div>
+            <b>{{titleInfo.loanAmountSum/100000000 | number: '3.2-3'}}</b>
+            <span>亿元</span>
+        </div>
     </div>
-  </div>
-  <div class="item" scaleDiv=true [appScaleBox]="item3">
-    <h2>今日贷款余额</h2>
-    <div>
-      <b>1,356,786</b>
-      <span>元</span>
+    <div class="item" scaleDiv=true [appScaleBox]="item3">
+        <h2>今日贷款余额</h2>
+        <div>
+            <b>{{titleInfo.loanBalance  | number: '3.2'}}</b>
+            <span>元</span>
+        </div>
     </div>
-  </div>
-  <div class="item" scaleDiv=true [appScaleBox]="item4">
-    <h2>今日新增贷款客户</h2>
-    <div>
-      <b>45</b>
-      <span>位</span>
+    <div class="item" scaleDiv=true [appScaleBox]="item4">
+        <h2>今日新增贷款客户</h2>
+        <div>
+            <b>{{titleInfo.newLoans  | number: '3.0'}}</b>
+            <span>位</span>
+        </div>
     </div>
-  </div>
-  <div class="item" scaleDiv=true [appScaleBox]="item5">
-    <h2>贷款客户总数</h2>
-    <div>
-      <b>134,323</b>
-      <span>位</span>
+    <div class="item" scaleDiv=true [appScaleBox]="item5">
+        <h2>贷款客户总数</h2>
+        <div>
+            <b>{{titleInfo.loansCount  | number: '3.0'}}</b>
+            <span>位</span>
+        </div>
     </div>
-  </div>
-  <app-top-time></app-top-time>
- 
+    <app-top-time></app-top-time>
+
 </div>
