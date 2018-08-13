@@ -58,7 +58,7 @@ export class PrTitleComponent implements OnInit {
   isPaly = false;
   activePage;
   actPath = true;
-  jgTime=15000;
+  jgTime=5000;
   menu = [
     {
       path: 'siChuan',
@@ -79,7 +79,6 @@ export class PrTitleComponent implements OnInit {
     private activatedRoute: ActivatedRoute, ) { }
 
   ngOnInit() {
-    debugger
     this.id = this.activatedRoute.snapshot.params['id'];
     this.menu.forEach(item=>{
       if(this.router.url.indexOf(item.path)>-1){
