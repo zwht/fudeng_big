@@ -23,13 +23,13 @@ export class BigScreenService {
             }
         },
         dailyLoanAmountQuery: {
-            method: 'get',
+            method: 'post',
             params: {
                 params1: 'dailyLoanAmountQuery'
             }
         },
         dailyloanbalanceQuery: {
-            method: 'get',
+            method: 'post',
             params: {
                 params1: 'dailyloanbalanceQuery'
             }

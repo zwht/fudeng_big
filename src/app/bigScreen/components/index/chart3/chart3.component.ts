@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { scale } from 'src/app/bigScreen/service/scale.service';
+import { BigScreenService } from 'src/app/share/restServices/bigScreen';
 
 
 @Component({
@@ -15,29 +16,58 @@ export class Chart3Component implements OnInit {
     top: 607,
   }
   chartOption = {}
-  indicator = [
-  { text: '核芯科技', max: 2400 },
-  { text: '天琥教育', max: 2400 },
-  { text: '翡翠教育', max: 2400 },
-  { text: '云琥在线', max: 2400 },
-  { text: '广州牵引力', max: 2400 },
-  { text: '广州熳点', max: 2400 },
-  { text: '恒企教育', max: 2400 },
-  { text: '潭州教育', max: 2400 }
-]
+  indicator = []
+  school = []
+  loanAmountSum = []
+  yMax = 300;
+
 
   constructor(
-    
+    private bigScreenService: BigScreenService
   ) { }
-  proportion(i) {
-    i = i * scale.widthScale
-    debugger
-    return i
+
+  diushuju(){
+    for (let index = 0; index < this.school.length; index++) {
+      this.indicator.push({text:this.school[index],max:this.yMax})
+    }
   }
 
-  ngOnInit() {
-    let that = this
+  MAX(){
+    var aaa = Math.max(...this.loanAmountSum);
+    var bbb = Math.ceil(aaa / 100)
+    bbb = bbb * 100
+    this.yMax = bbb
+  }
 
+  getdata() {
+    this.bigScreenService['totalloanamountQuery']({
+      params: {
+      },
+      data: {}
+    })
+      .then(response => {
+        if (response.errorCode == 0) {
+          for (let index = 0; index < response.data.length; index++) {
+            this.school.push(response.data[index][0].school)
+            this.loanAmountSum.push((response.data[index][0].loanAmountSum/10000).toFixed(2))
+          }
+          this.MAX()
+          this.diushuju()
+          this.chartoption()
+        }
+      })
+  }
+
+  proportion(i) {
+    i = i * scale.widthScale
+    return i
+  }
+  ngOnInit() {
+    this.getdata()
+  }
+
+  chartoption(){
+    let that = this
     this.chartOption = {
       title: {
         text: '当前贷款投放总量   Total loan amount',
@@ -57,7 +87,7 @@ export class Chart3Component implements OnInit {
           let data = ''
           for (let index = 0; index < params.data.value.length; index++) {
                 let shuju = that.indicator[index].text + ':' + params.data.value[index]  
-                data = data +'<div><span>'+ shuju + '</span></div>'
+                data = data +'<div><span>'+ shuju + '万元</span></div>'
           }
           return '<div class=".bigScreen_components_indexCpt_chart1"><div class="waikuang"><div class="zuoshang"><div class="zuoshang1"></div><div class="zuoshang2"></div></div><div class="youshang"><div class="youshang1"></div><div class="youshang2"></div></div><div class="neikuang" ><div>'+data+'</div></div><div><div class="zuoxia1"></div><div class="zuoxia2"></div></div><div class="youxia"><div class="youxia1"></div><div class="youxia2"></div></div></div></div>';
         },
@@ -104,7 +134,7 @@ export class Chart3Component implements OnInit {
 
           data: [{
             name: '1111',
-            value: [2000, 2100, 1900, 1800, 1600, 2200, 2300, 1700],
+            value: this.loanAmountSum,
             areaStyle: {
               normal: {
                 color: new window['echarts'].graphic.RadialGradient(0.5, 0.5, 0.5, [

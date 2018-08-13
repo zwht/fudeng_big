@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { scale } from 'src/app/bigScreen/service/scale.service';
+import { BigScreenService } from 'src/app/share/restServices/bigScreen';
+
 
 @Component({
   selector: 'app-chart2',
@@ -13,15 +15,35 @@ export class Chart2Component implements OnInit {
     left: 50 + 751 + 319,
     top: 128,
   }
-  data = [220, 182, 191, 234, 290, 330, 310]
+  data = []
+  school = []
   yMax = 500;
   dataShadow = [];
   dataShadow2 = [];
 
   chartOption = {}
   constructor(
+    private bigScreenService: BigScreenService
   ) { }
 
+  getdata() {
+    this.bigScreenService['loanbalanceQuery']({
+      params: {
+      },
+      data: {}
+    })
+      .then(response => {
+        if (response.errorCode == 0) {
+          for (let index = 0; index < response.data.length; index++) {
+            this.school.push(response.data[index][0].school)
+            this.data.push((response.data[index][0].loanBalance/10000).toFixed(2))
+          }
+          this.MAX()
+          this.YMax()
+          this.chartoption()
+        }
+      })
+  }
   YMax() {
     for (let index = 0; index < this.data.length; index++) {
       this.dataShadow.push(this.yMax);
@@ -29,15 +51,23 @@ export class Chart2Component implements OnInit {
     }
   }
 
+MAX(){
+  var aaa = Math.max(...this.data);
+  var bbb = Math.ceil(aaa / 500)
+  bbb = bbb * 500
+  this.yMax = bbb
+}
+
   proportion(i) {
     i = i * scale.widthScale
     return i
   }
 
   ngOnInit() {
+    this.getdata()
+  }
 
-    this.YMax()
-
+  chartoption(){
     this.chartOption = {
       title: {
         text: '当前贷款余额   Loan balance',
@@ -72,7 +102,7 @@ export class Chart2Component implements OnInit {
           fontSize :this.proportion(12)
         },
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: this.school
       },
 
       yAxis: {
@@ -116,10 +146,12 @@ export class Chart2Component implements OnInit {
         barGap: '-100%',
         barCategoryGap: '40%',
         data: this.dataShadow,
-        animation: false
+        animation: false,
+        barWidth : this.proportion(28),
       },
       {
         data: this.data,
+        barWidth : this.proportion(28),
         type: 'bar',
         stack: 'sum',
         itemStyle: {

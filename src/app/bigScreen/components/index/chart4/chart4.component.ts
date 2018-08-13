@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { scale } from 'src/app/bigScreen/service/scale.service';
+import { BigScreenService } from 'src/app/share/restServices/bigScreen';
 
 @Component({
   selector: 'app-chart4',
@@ -15,17 +16,69 @@ export class Chart4Component implements OnInit {
   }
   chartOption = {}
   constructor(
-    
+    private bigScreenService: BigScreenService
   ) { }
+  fdata = []
+  time = []
+  school = []
+  lsloanBalance = []
+  loanBalance = []
 
   proportion(i) {
     i = i * scale.widthScale
     return i
   }
+
+  diushuju(){
+    for (let index = 0; index < this.school.length; index++) {
+      this.fdata.push({
+        name: this.school[index],
+        type: 'line',
+        data: this.loanBalance[index],
+        symbol: 'none',
+        smooth: true,
+      })
+    }
+  }
+
+  getdata() {
+    this.bigScreenService['dailyloanbalanceQuery']({
+      params: {},
+      data: {
+        startTime :1262275200000,
+        endTime:1893427200000
+      }
+    })
+      .then(response => {
+        if (response.errorCode == 0) {
+          for (let index = 0; index < response.data[0].length; index++) {
+            this.time.push(response.data[0][index].time)
+            this.school.push(response.data[index][0].school)
+          }
+          for (let index1 = 0; index1 < response.data.length; index1++) {
+            for (let index2 = 0; index2 < response.data[0].length; index2++) {
+              this.lsloanBalance.push((response.data[index1][index2].loanBalance/10000).toFixed(2))
+            }
+            this.loanBalance.push(this.lsloanBalance)
+            this.lsloanBalance = []
+          }
+
+          this.diushuju()
+          this.charoption()
+        }
+      })
+  }
+
   ngOnInit() {
+    this.getdata()
+    console.log(this.fdata);
+    
+  }
+
+  charoption() {
     this.chartOption = {
       title: {
-        text: '每天贷款投放量  Daily loan amount',
+        text: '每日贷款余额  Daily loan balance',
         top: this.proportion(31),
         left: this.proportion(30),
         textStyle: {
@@ -37,9 +90,9 @@ export class Chart4Component implements OnInit {
 
       tooltip: {
         trigger: 'axis',
-        axisPointer:{
-          lineStyle :{
-            color : 'RGBA(18, 79, 255, 0.5)'
+        axisPointer: {
+          lineStyle: {
+            color: 'RGBA(18, 79, 255, 0.5)'
           },
         },
         backgroundColor: 'rgba(50,50,50,0)',
@@ -63,10 +116,10 @@ export class Chart4Component implements OnInit {
         itemHeight: this.proportion(2),
         itemWidth: this.proportion(12),
         textStyle: {
-          fontSize :this.proportion(12),
+          fontSize: this.proportion(12),
           color: '#5B9DFF',
         },
-        data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+        data: this.school
       },
 
       grid: {
@@ -92,11 +145,11 @@ export class Chart4Component implements OnInit {
         axisLabel: {
           color: '#557DD4',
           margin: this.proportion(21),
-          fontSize :this.proportion(12),
+          fontSize: this.proportion(12),
         },
         type: 'category',
         boundaryGap: false,
-        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        data: this.time
       },
 
       yAxis: {
@@ -105,13 +158,13 @@ export class Chart4Component implements OnInit {
             color: '#1F3C7A',
           }
         },
-        axisTick :{
+        axisTick: {
           show: false,
         },
-        axisLabel :{
+        axisLabel: {
           color: '#557DD4',
-          margin : this.proportion(24),
-          fontSize :this.proportion(12),
+          margin: this.proportion(24),
+          fontSize: this.proportion(12),
         },
         splitLine: {
           lineStyle: {
@@ -135,50 +188,7 @@ export class Chart4Component implements OnInit {
           color: '#557DD4',
         },
       }],
-
-      series: [
-        {
-          name: '邮件营销',
-          type: 'line',
-          stack: '总量',
-          data: [120, 132, 101, 134, 90, 230, 210],
-          symbol: 'none',
-          smooth: true,
-        },
-        {
-          name: '联盟广告',
-          type: 'line',
-          stack: '总量',
-          data: [220, 182, 191, 234, 290, 330, 310],
-          symbol: 'none',
-          smooth: true,
-        },
-        {
-          name: '视频广告',
-          type: 'line',
-          stack: '总量',
-          data: [150, 232, 201, 154, 190, 330, 410],
-          symbol: 'none',
-          smooth: true,
-        },
-        {
-          name: '直接访问',
-          type: 'line',
-          stack: '总量',
-          data: [320, 332, 301, 334, 390, 330, 320],
-          symbol: 'none',
-          smooth: true,
-        },
-        {
-          name: '搜索引擎',
-          type: 'line',
-          stack: '总量',
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
-          symbol: 'none',
-          smooth: true,
-        }
-      ]
+      series: this.fdata
     }
   }
-
 }
