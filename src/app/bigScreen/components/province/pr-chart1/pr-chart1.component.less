@@ -7,6 +7,44 @@
     }
 }
 
+.cylinders-nav {
+    position: absolute;
+    right: .2rem;
+    top: 0.2rem;
+    li {
+        color: #6F92DD;
+        font-size: .12rem;
+        line-height: 0.15rem;
+        overflow: hidden;
+        margin-bottom: .15rem;
+        cursor: pointer;
+        span {
+            float: left;
+            width: .1rem;
+            height: .15rem;
+            margin-right: .18rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% auto;
+            &.target {
+                background-image: url('/assets/images/bigScreen/p-map/目标.png');
+            }
+            &.red {
+                background-image: url('/assets/images/bigScreen/p-map/图例1.png');
+            }
+            &.yellow {
+                background-image: url('/assets/images/bigScreen/p-map/图例2.png');
+            }
+            &.green {
+                background-image: url('/assets/images/bigScreen/p-map/图例3.png');
+            }
+            &.blue {
+                background-image: url('/assets/images/bigScreen/p-map/图例4.png');
+            }
+        }
+    }
+}
+
 .cylinders {
     position: absolute;
     width: 2rem;
@@ -26,50 +64,50 @@
             background-size: 100% auto;
         }
     }
-    &.siChuan{
+    &.siChuan {
         left: 10%;
         bottom: 33%;
-        .yellow{
+        .yellow {
             bottom: 22%;
             left: 5%;
         }
-        .green{
+        .green {
             bottom: 11%;
             left: 15%;
         }
-        .blue{
+        .blue {
             bottom: -8%;
             left: 30%;
         }
     }
-    &.chongQing{
+    &.chongQing {
         left: 33%;
         bottom: 11%;
-        .yellow{
+        .yellow {
             left: 5%;
             bottom: 5%;
         }
-        .green{
+        .green {
             left: 6%;
             bottom: 17.5%;
         }
-        .blue{
+        .blue {
             left: 12.5%;
             bottom: 20.5%;
         }
     }
-    &.huBei{
+    &.huBei {
         left: 55.8%;
         bottom: 12.5%;
-        .yellow{
+        .yellow {
             left: 7%;
             bottom: -2%;
         }
-        .green{
+        .green {
             left: 9%;
             bottom: 2%;
         }
-        .blue{
+        .blue {
             left: 6%;
             bottom: -15%;
         }
@@ -115,7 +153,7 @@
         background-position: center bottom;
         background-size: 100% auto;
     }
-    .number{
+    .number {
         position: absolute;
         top: -.25rem;
         color: #fff;
@@ -131,12 +169,12 @@
 .cylinder-item {
     &.red {
         .cylinder-data {
-            background-image: url('/assets/images/bigScreen/p-map/柱1.png');            
+            background-image: url('/assets/images/bigScreen/p-map/柱1.png');
         }
         .cylinder-top {
-            background-image: url('/assets/images/bigScreen/p-map/方型1.png');            
+            background-image: url('/assets/images/bigScreen/p-map/方型1.png');
         }
-        .number{
+        .number {
             color: #FE7189;
         }
     }
@@ -149,7 +187,7 @@
             background-image: url('/assets/images/bigScreen/p-map/方型2.png');
             top: calc(100% - 35%);
         }
-        .number{
+        .number {
             color: #E48B24;
         }
     }
@@ -162,7 +200,7 @@
             background-image: url('/assets/images/bigScreen/p-map/方型3.png');
             top: calc(100% - 55%);
         }
-        .number{
+        .number {
             color: #49AE55;
         }
     }
@@ -175,8 +213,8 @@
             background-image: url('/assets/images/bigScreen/p-map/方型4.png');
             top: calc(100% - 88%);
         }
-        .number{
+        .number {
             color: #7D9EFF;
         }
-    }            
+    }
 }
