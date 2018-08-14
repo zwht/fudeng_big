@@ -24,13 +24,21 @@ export class Chart1Component implements OnInit {
   school = []
   lsdailyLoanamount = []
   dailyLoanamount = []
+  color = ['RGBA(255, 160, 103, 1)','RGBA(72, 137, 255, 1)','RGBA(255, 63, 96, 1)','RGBA(18, 79, 255, 1)','RGBA(29, 174, 239, 1)','RGBA(185, 205, 106, 1)','RGBA(182, 84, 229, 1)','RGBA(89, 89, 254, 1)','RGBA(95, 169, 104, 1)']
 
+  // onChartInit(event){
+  //   if(event){
+  //     event['on']('dataZoom', function (params) {
+  //       //debugger
+  //     });
+  //   }
+  // }
   proportion(i) {
     i = i * scale.widthScale
     return i
   }
 
-  diushuju(){
+  diushuju() {
     for (let index = 0; index < this.school.length; index++) {
       this.fdata.push({
         name: this.school[index],
@@ -38,6 +46,9 @@ export class Chart1Component implements OnInit {
         data: this.dailyLoanamount[index],
         symbol: 'none',
         smooth: true,
+        itemStyle:{
+          color: this.color[index]
+        }
       })
     }
   }
@@ -46,24 +57,51 @@ export class Chart1Component implements OnInit {
     this.bigScreenService['dailyLoanAmountQuery']({
       params: {},
       data: {
-        startTime :1262275200000,
-        endTime:1893427200000
+        startTime: 1262275200000,
+        endTime: 1893427200000
       }
     })
       .then(response => {
         if (response.errorCode == 0) {
-          for (let index = 0; index < response.data[0].length; index++) {
-            this.time.push(response.data[0][index].time)
+          for (let index = 0; index < response.data.length; index++) {
             this.school.push(response.data[index][0].school)
           }
+          let aaa = 0
           for (let index1 = 0; index1 < response.data.length; index1++) {
-            for (let index2 = 0; index2 < response.data[0].length; index2++) {
-              this.lsdailyLoanamount.push((response.data[index1][index2].dailyLoanamount/10000).toFixed(2))
+            for (let index2 = 0; index2 < response.data[index1].length; index2++) {
+              if(this.time.length==0){
+                this.time.push(response.data[index1][index2].time)
+              }
+              for (let index3 = 0; index3 < this.time.length; index3++) {
+                if(response.data[index1][index2].time ==this.time[index3]){
+                  aaa = 1
+                }
+              }
+              if(aaa == 0){
+                this.time.push(response.data[index1][index2].time)
+              }else{
+                aaa = 0
+              }
+            }
+          }
+          let bbb = 0
+          for (let index1 = 0; index1 < response.data.length; index1++) {
+            for (let index2 = 0; index2 < response.data[index1].length; index2++) {
+              for (let index3 = 0; index3 < this.time.length; index3++) {
+                if(this.time[index3] == response.data[index1][index2].time){
+                  bbb = 1
+                }
+              }
+              if(bbb == 1){
+                this.lsdailyLoanamount.push((response.data[index1][index2].dailyLoanamount / 10000).toFixed(2))
+                bbb = 0
+              }else{
+                this.lsdailyLoanamount.push('')
+              }
             }
             this.dailyLoanamount.push(this.lsdailyLoanamount)
             this.lsdailyLoanamount = []
           }
-
           this.diushuju()
           this.charoption()
         }
@@ -72,8 +110,6 @@ export class Chart1Component implements OnInit {
 
   ngOnInit() {
     this.getdata()
-    console.log(this.fdata);
-    
   }
 
   charoption() {
@@ -147,6 +183,9 @@ export class Chart1Component implements OnInit {
           color: '#557DD4',
           margin: this.proportion(21),
           fontSize: this.proportion(12),
+          // formatter: function (value, index) {
+          //   return value + '+' + index
+          // }
         },
         type: 'category',
         boundaryGap: false,
@@ -184,11 +223,13 @@ export class Chart1Component implements OnInit {
         end: 50,
         fillerColor: 'RGBA(85, 125, 212, 0.2)',
         borderColor: 'RGBA(31, 60, 122, 1)',
-        handleSize: '80%',
+        handleIcon: 'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
+        handleSize: '100%',
         textStyle: {
           color: '#557DD4',
         },
       }],
+
       series: this.fdata
     }
   }

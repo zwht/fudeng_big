@@ -19,6 +19,18 @@ export class Chart5Component implements OnInit {
   school = []
   loansCount = []
   fdata = []
+  color = ['RGBA(255, 160, 103, 1)','RGBA(72, 137, 255, 1)','RGBA(255, 63, 96, 1)','RGBA(18, 79, 255, 1)','RGBA(29, 174, 239, 1)','RGBA(185, 205, 106, 1)','RGBA(182, 84, 229, 1)','RGBA(89, 89, 254, 1)','RGBA(95, 169, 104, 1)']
+  schoolshu = {
+    广州牵引力 : 0,
+    核芯科技 : 0,
+    天琥教育 : 0,
+    潭州教育 : 0,
+    翡翠教育 : 0,
+    云琥在线 : 0,
+    恒企教育 : 0,
+    广州熳点 : 0,
+    一路时尚 : 0,
+  }
 
   constructor(
     private bigScreenService: BigScreenService
@@ -30,8 +42,15 @@ export class Chart5Component implements OnInit {
 
   diushuju(){
     for (let index = 0; index < this.school.length; index++) {
-      this.fdata.push({value:this.loansCount[index] , name:this.school[index]})
+      this.fdata.push({
+        value:this.loansCount[index], 
+        name:this.school[index],
+        itemStyle:{
+          color:this.color[index]
+        }
+      })
       this.zongshu = this.zongshu + this.loansCount[index]
+      this.schoolshu[this.school[index]] = this.loansCount[index]
     }
   }
 
@@ -85,7 +104,7 @@ export class Chart5Component implements OnInit {
 
       legend: {
         top: this.proportion(130),
-        right: this.proportion(57),
+        right: this.proportion(10),
         orient: 'vertical',
         itemWidth: this.proportion(3),
         itemHeight: this.proportion(3),
@@ -94,7 +113,10 @@ export class Chart5Component implements OnInit {
           color: '#5B9DFF',
           fontSize: this.proportion(12),
         },
-        data: this.school
+        data: this.school,
+        formatter: function (name) {
+          return name+'('+that.schoolshu[name]+')'
+      }
       },
 
       series: [

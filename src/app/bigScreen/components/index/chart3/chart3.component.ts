@@ -21,6 +21,10 @@ export class Chart3Component implements OnInit {
   loanAmountSum = []
   yMax = 300;
 
+  styl={
+    top : this.proportion2(62),
+    right: this.proportion2(82)
+  }
 
   constructor(
     private bigScreenService: BigScreenService
@@ -56,6 +60,10 @@ export class Chart3Component implements OnInit {
           this.chartoption()
         }
       })
+  }
+  proportion2(i) {
+    i = i * scale.widthScale
+    return i+"px"
   }
 
   proportion(i) {
@@ -101,8 +109,10 @@ export class Chart3Component implements OnInit {
         },
         nameGap : this.proportion(5),
         indicator: this.indicator,
-        center: [this.proportion(200), this.proportion(230)],
-        radius: this.proportion(157),
+        center: [this.proportion(230), this.proportion(240)],
+        radius: this.proportion(150),
+        startAngle :270,
+        splitNumber :4,
         splitLine: {
           lineStyle: {
             color: 'RGBA(31, 60, 122, 1)',
