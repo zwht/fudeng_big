@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { scale } from 'src/app/bigScreen/service/scale.service';
+import { scale } from '../../../service/scale.service';
 
 @Component({
   selector: 'app-pr-chart2',
