@@ -23,7 +23,8 @@ export class Chart3Component implements OnInit {
 
   styl={
     top : this.proportion2(62),
-    right: this.proportion2(82)
+    right: this.proportion2(82),
+    width: this.proportion2(376),
   }
 
   constructor(

@@ -18,6 +18,11 @@ export class Chart4Component implements OnInit {
   constructor(
     private bigScreenService: BigScreenService
   ) { }
+  XLabel = {
+    value :0,
+    index :0,
+    Dvalue : 0
+  }
   fdata = []
   time = []
   school = []
@@ -112,6 +117,7 @@ export class Chart4Component implements OnInit {
   }
 
   charoption() {
+    let that = this
     this.chartOption = {
       title: {
         text: '每日贷款余额  Daily loan balance',
@@ -182,9 +188,34 @@ export class Chart4Component implements OnInit {
           color: '#557DD4',
           margin: this.proportion(21),
           fontSize: this.proportion(12),
-          // formatter: function (value, index) {
-          //   return value + '+' + index
-          // }
+          formatter: function (value, index) {
+            if(index == 0){
+              let date = new Date(value)
+              let time1 
+              time1= date.getTime()
+              that.XLabel.value = time1
+              that.XLabel.index = index
+              return value
+            }
+            if(index == 1){
+              let time1
+              let date = new Date(value)
+              time1 = date.getTime()
+              that.XLabel.Dvalue = time1 - that.XLabel.value
+              if (that.XLabel.Dvalue >2591000000){
+                return value.slice(5)
+              }else{
+                return value.slice(8)
+
+              }
+            }else{
+              if (that.XLabel.Dvalue >2591000000){
+                return value.slice(5)
+              }else{
+                return value.slice(8)
+              }
+            }
+          }
         },
         type: 'category',
         boundaryGap: false,
