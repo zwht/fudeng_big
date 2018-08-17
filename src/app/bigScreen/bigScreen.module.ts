@@ -25,7 +25,7 @@ export const routes: Routes = [
         path: '',
         component: IndexComponent,
         data: {
-            name: '大屏'
+            name: '富登信贷'
         }
     },
     {
