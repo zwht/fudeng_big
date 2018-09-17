@@ -46,7 +46,7 @@ export class TitleComponent implements OnInit {
   };
 
   titleInfo = {
-    newLoanAmount:'',
+    newLoanAmount:0,
     loanAmountSum:0,
     loanBalance:'',
     newLoans:'',

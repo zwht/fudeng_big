@@ -3,7 +3,7 @@
     <div class="item" scaleDiv=true [appScaleBox]="item1">
         <h2>今日贷款投放量</h2>
         <div>
-            <b>{{titleInfo.newLoanAmount  | number: '3.2-3'}}</b>
+            <b>{{titleInfo.newLoanAmount/10000  | number: '3.2-3'}}</b>
             <span>万元</span>
         </div>
     </div>
