@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { scale } from '../../../service/scale.service';
 import { BigScreenService } from '../../../../share/restServices/BigScreen';
-
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-chart1',
@@ -17,12 +17,13 @@ export class Chart1Component implements OnInit {
   }
   chartOption = {}
   constructor(
-    private bigScreenService: BigScreenService
+    private bigScreenService: BigScreenService,
+    private activatedRoute: ActivatedRoute
   ) { }
   XLabel = {
-    value :0,
-    index :0,
-    Dvalue : 0
+    value: 0,
+    index: 0,
+    Dvalue: 0
   }
 
   fdata = []
@@ -30,8 +31,8 @@ export class Chart1Component implements OnInit {
   school = []
   lsdailyLoanamount = []
   dailyLoanamount = []
-  color = ['RGBA(255, 160, 103, 1)','RGBA(72, 137, 255, 1)','RGBA(255, 63, 96, 1)','RGBA(18, 79, 255, 1)','RGBA(29, 174, 239, 1)','RGBA(185, 205, 106, 1)','RGBA(182, 84, 229, 1)','RGBA(89, 89, 254, 1)','RGBA(95, 169, 104, 1)']
-
+  color = ['RGBA(255, 160, 103, 1)', 'RGBA(72, 137, 255, 1)', 'RGBA(255, 63, 96, 1)', 'RGBA(18, 79, 255, 1)', 'RGBA(29, 174, 239, 1)', 'RGBA(185, 205, 106, 1)', 'RGBA(182, 84, 229, 1)', 'RGBA(89, 89, 254, 1)', 'RGBA(95, 169, 104, 1)']
+  city;
   // onChartInit(event){
   //   if(event){
   //     event['on']('dataZoom', function (params) {
@@ -52,7 +53,7 @@ export class Chart1Component implements OnInit {
         data: this.dailyLoanamount[index],
         symbol: 'none',
         smooth: true,
-        itemStyle:{
+        itemStyle: {
           color: this.color[index]
         }
       })
@@ -61,7 +62,7 @@ export class Chart1Component implements OnInit {
 
   getdata() {
     this.bigScreenService['dailyLoanAmountQuery']({
-      params: {},
+      params: { address: this.city },
       data: {
         startTime: 1262275200000,
         endTime: 1893427200000
@@ -75,17 +76,17 @@ export class Chart1Component implements OnInit {
           let aaa = 0
           for (let index1 = 0; index1 < response.data.length; index1++) {
             for (let index2 = 0; index2 < response.data[index1].length; index2++) {
-              if(this.time.length==0){
+              if (this.time.length == 0) {
                 this.time.push(response.data[index1][index2].time)
               }
               for (let index3 = 0; index3 < this.time.length; index3++) {
-                if(response.data[index1][index2].time ==this.time[index3]){
+                if (response.data[index1][index2].time == this.time[index3]) {
                   aaa = 1
                 }
               }
-              if(aaa == 0){
+              if (aaa == 0) {
                 this.time.push(response.data[index1][index2].time)
-              }else{
+              } else {
                 aaa = 0
               }
             }
@@ -94,14 +95,14 @@ export class Chart1Component implements OnInit {
           for (let index1 = 0; index1 < response.data.length; index1++) {
             for (let index2 = 0; index2 < response.data[index1].length; index2++) {
               for (let index3 = 0; index3 < this.time.length; index3++) {
-                if(this.time[index3] == response.data[index1][index2].time){
+                if (this.time[index3] == response.data[index1][index2].time) {
                   bbb = 1
                 }
               }
-              if(bbb == 1){
+              if (bbb == 1) {
                 this.lsdailyLoanamount.push((response.data[index1][index2].dailyLoanamount / 10000).toFixed(2))
                 bbb = 0
-              }else{
+              } else {
                 this.lsdailyLoanamount.push('')
               }
             }
@@ -115,7 +116,10 @@ export class Chart1Component implements OnInit {
   }
 
   ngOnInit() {
-    this.getdata()
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.city = params['city'] || 202;
+      this.getdata()
+    });
   }
 
   charoption() {
@@ -191,29 +195,29 @@ export class Chart1Component implements OnInit {
           margin: this.proportion(21),
           fontSize: this.proportion(12),
           formatter: function (value, index) {
-            if(index == 0){
+            if (index == 0) {
               let date = new Date(value)
-              let time1 
-              time1= date.getTime()
+              let time1
+              time1 = date.getTime()
               that.XLabel.value = time1
               that.XLabel.index = index
               return value
             }
-            if(index == 1){
+            if (index == 1) {
               let time1
               let date = new Date(value)
               time1 = date.getTime()
               that.XLabel.Dvalue = time1 - that.XLabel.value
-              if (that.XLabel.Dvalue >2591000000){
+              if (that.XLabel.Dvalue > 2591000000) {
                 return value.slice(5)
-              }else{
+              } else {
                 return value.slice(8)
 
               }
-            }else{
-              if (that.XLabel.Dvalue >2591000000){
+            } else {
+              if (that.XLabel.Dvalue > 2591000000) {
                 return value.slice(5)
-              }else{
+              } else {
                 return value.slice(8)
               }
             }

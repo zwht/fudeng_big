@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BigScreenService } from '../../../../share/restServices/BigScreen';
-
+import { ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-title',
   templateUrl: './title.component.html',
@@ -46,23 +46,33 @@ export class TitleComponent implements OnInit {
   };
 
   titleInfo = {
-    newLoanAmount:0,
-    loanAmountSum:0,
-    loanBalance:'',
-    newLoans:'',
-    loansCount:''
+    newLoanAmount: 0,
+    loanAmountSum: 0,
+    loanBalance: '',
+    newLoans: '',
+    loansCount: ''
   };
+  city;
 
-  constructor(private bigScreenService: BigScreenService) {
+  constructor(private bigScreenService: BigScreenService,
+    private activatedRoute: ActivatedRoute) {
 
   }
 
   ngOnInit() {
-    this.initTitle();
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.city = params['city'] || 202;
+      this.initTitle();
+    });
+
   }
 
   initTitle() {
-    this.bigScreenService['basic']({}).then(rep => {
+    this.bigScreenService['basic']({
+      params: {
+        address: this.city
+      }
+    }).then(rep => {
       this.titleInfo = rep.data;
     }).catch(error => { });
   }

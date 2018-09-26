@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-centre',
@@ -12,9 +13,14 @@ export class CentreComponent implements OnInit {
     left: 849,
     top: 170,
   }
-  constructor() { }
+  city
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.city = params['city'] || 202;
+      
+    });
   }
 
 }

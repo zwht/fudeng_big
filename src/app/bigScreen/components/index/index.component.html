@@ -1,7 +1,8 @@
 <div class="index-cpt">
   <div [appScaleBox]="bgBox">
     <img style="width: 100%; height: 100%;" 
-    src="assets/images/bigScreen/重庆大屏-背景.png" alt="">
+    [src]="'assets/images/bigScreen/'+city+'背景.png'"
+   alt="">
   </div>
   <app-title></app-title>
   <app-chart1></app-chart1>

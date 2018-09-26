@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { scale } from '../../../service/scale.service';
 import { BigScreenService } from '../../../../share/restServices/BigScreen';
-
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-chart3',
@@ -21,23 +21,24 @@ export class Chart3Component implements OnInit {
   loanAmountSum = []
   yMax = 300;
 
-  styl={
-    top : this.proportion2(62),
+  styl = {
+    top: this.proportion2(62),
     right: this.proportion2(82),
     width: this.proportion2(376),
   }
-
+  city;
   constructor(
-    private bigScreenService: BigScreenService
+    private bigScreenService: BigScreenService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
-  diushuju(){
+  diushuju() {
     for (let index = 0; index < this.school.length; index++) {
-      this.indicator.push({text:this.school[index],max:this.yMax})
+      this.indicator.push({ text: this.school[index], max: this.yMax })
     }
   }
 
-  MAX(){
+  MAX() {
     var aaa = Math.max(...this.loanAmountSum);
     var bbb = Math.ceil(aaa / 100)
     bbb = bbb * 100
@@ -46,7 +47,7 @@ export class Chart3Component implements OnInit {
 
   getdata() {
     this.bigScreenService['totalloanamountQuery']({
-      params: {
+      params: {address: this.city
       },
       data: {}
     })
@@ -54,7 +55,7 @@ export class Chart3Component implements OnInit {
         if (response.errorCode == 0) {
           for (let index = 0; index < response.data.length; index++) {
             this.school.push(response.data[index][0].school)
-            this.loanAmountSum.push((response.data[index][0].loanAmountSum/10000).toFixed(2))
+            this.loanAmountSum.push((response.data[index][0].loanAmountSum / 10000).toFixed(2))
           }
           this.MAX()
           this.diushuju()
@@ -64,7 +65,7 @@ export class Chart3Component implements OnInit {
   }
   proportion2(i) {
     i = i * scale.widthScale
-    return i+"px"
+    return i + "px"
   }
 
   proportion(i) {
@@ -72,10 +73,13 @@ export class Chart3Component implements OnInit {
     return i
   }
   ngOnInit() {
-    this.getdata()
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.city = params['city'] || 202;
+      this.getdata()
+    });
   }
 
-  chartoption(){
+  chartoption() {
     let that = this
     this.chartOption = {
       title: {
@@ -95,25 +99,25 @@ export class Chart3Component implements OnInit {
         formatter: function (params, ticket, callback) {
           let data = ''
           for (let index = 0; index < params.data.value.length; index++) {
-                let shuju = that.indicator[index].text + ':' + params.data.value[index]  
-                data = data +'<div><span>'+ shuju + '万元</span></div>'
+            let shuju = that.indicator[index].text + ':' + params.data.value[index]
+            data = data + '<div><span>' + shuju + '万元</span></div>'
           }
-          return '<div class=".bigScreen_components_indexCpt_chart1"><div class="waikuang"><div class="zuoshang"><div class="zuoshang1"></div><div class="zuoshang2"></div></div><div class="youshang"><div class="youshang1"></div><div class="youshang2"></div></div><div class="neikuang" ><div>'+data+'</div></div><div><div class="zuoxia1"></div><div class="zuoxia2"></div></div><div class="youxia"><div class="youxia1"></div><div class="youxia2"></div></div></div></div>';
+          return '<div class=".bigScreen_components_indexCpt_chart1"><div class="waikuang"><div class="zuoshang"><div class="zuoshang1"></div><div class="zuoshang2"></div></div><div class="youshang"><div class="youshang1"></div><div class="youshang2"></div></div><div class="neikuang" ><div>' + data + '</div></div><div><div class="zuoxia1"></div><div class="zuoxia2"></div></div><div class="youxia"><div class="youxia1"></div><div class="youxia2"></div></div></div></div>';
         },
         padding: this.proportion(10)
       },
 
-      radar:{
-        name:{
-          color : 'RGBA(85, 125, 212, 1)',
-          fontSize :this.proportion(12)
+      radar: {
+        name: {
+          color: 'RGBA(85, 125, 212, 1)',
+          fontSize: this.proportion(12)
         },
-        nameGap : this.proportion(5),
+        nameGap: this.proportion(5),
         indicator: this.indicator,
         center: [this.proportion(230), this.proportion(240)],
         radius: this.proportion(150),
-        startAngle :270,
-        splitNumber :4,
+        startAngle: 270,
+        splitNumber: 4,
         splitLine: {
           lineStyle: {
             color: 'RGBA(31, 60, 122, 1)',
@@ -125,7 +129,7 @@ export class Chart3Component implements OnInit {
           }
         },
         splitArea: {
-          areaStyle:{
+          areaStyle: {
             color: 'RGBA(0,0,0,0.4)',
           }
         },

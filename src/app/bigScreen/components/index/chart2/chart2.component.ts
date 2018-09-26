@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { scale } from '../../../service/scale.service';
 import { BigScreenService } from '../../../../share/restServices/BigScreen';
-
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-chart2',
@@ -20,15 +20,16 @@ export class Chart2Component implements OnInit {
   yMax = 500;
   dataShadow = [];
   dataShadow2 = [];
-
+  city
   chartOption = {}
   constructor(
-    private bigScreenService: BigScreenService
+    private bigScreenService: BigScreenService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   getdata() {
     this.bigScreenService['loanbalanceQuery']({
-      params: {
+      params: {address: this.city
       },
       data: {}
     })
@@ -64,7 +65,10 @@ MAX(){
   }
 
   ngOnInit() {
-    this.getdata()
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.city = params['city'] || 202;
+      this.getdata()
+    });
   }
 
   chartoption(){
